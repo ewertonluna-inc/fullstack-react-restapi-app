@@ -19,9 +19,23 @@ class Courses extends React.Component {
 
 
   render(){
+    const { courses } = this.state;
+
     return (
       <div className="bounds">
         {/* Render each course here */}
+        {courses.map(course => {
+          const { id, title } = course
+
+          return (
+            <div className="grid-33">
+              <a className="course--module course--link" href={`/courses/${id}`}>
+                <h4 className="course--label">Course</h4>
+                <h3 className="course--title">{title}</h3>
+              </a>
+            </div>
+          ) 
+        })}
       </div>
     );
   }
