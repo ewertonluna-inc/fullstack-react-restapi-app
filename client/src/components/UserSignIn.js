@@ -4,9 +4,9 @@ import Form from '../components/Form';
 class UserSignIn extends React.Component {
   
   state = {
-    emailAddress = '',
-    password = '',
-    errors = []
+    emailAddress: '',
+    password: '',
+    errors: [],
   }
   
   
@@ -17,8 +17,10 @@ class UserSignIn extends React.Component {
           <h1>Sign In</h1>
           <div>
             <Form
-              submitTextButton="Sign In"
+              submitButtonText="Sign In"
               submit={this.submit}
+              cancel={this.cancel}
+              errors={this.state.errors}
               elements={() => (
                 <React.Fragment>
                   <div>
@@ -29,7 +31,7 @@ class UserSignIn extends React.Component {
                       onChange={this.change}
                       className=""
                       placeholder="Email Address"
-                      defaultValue
+                      value={this.state.emailAddress}
                     />
                   </div>
                   <div>
@@ -38,11 +40,11 @@ class UserSignIn extends React.Component {
                       name="password"
                       type="password"
                       onChange={this.change}
-                      className
+                      className=""
                       placeholder="Password"
-                      defaultValue
+                      value={this.state.password}
                     />
-                  </div>;
+                  </div>
                 </React.Fragment>
               )}
             />
@@ -59,14 +61,14 @@ class UserSignIn extends React.Component {
     this.setState({ [name]: value });
   }
 
-  submit() {
+  submit = () => {
     const { emailAddress, password } = this.state;
     this.props.signIn(emailAddress, password)
       .then(user => {
         if (user === null) {
           this.setState({errors: ['Sign in was unsuccessful']});
         } else {
-          this.props.history.push('/authenticated');
+          this.props.history.push('/courses');
           console.log(`SUCCESS! ${emailAddress} is now signed in!`);
         }
       })
@@ -76,5 +78,10 @@ class UserSignIn extends React.Component {
       });
   }
 
-
+  cancel = () => {
+    this.props.history.push('/courses')
+  }
 }
+
+
+export default UserSignIn;
