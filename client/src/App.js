@@ -21,6 +21,7 @@ class App extends React.Component {
     return (
       <div>
       <BrowserRouter>
+        <Route path="/courses" component={Courses} />
         <Route path="/signin" render={() => <UserSignIn signIn={this.signIn} />} />
       </BrowserRouter>
       </div>
