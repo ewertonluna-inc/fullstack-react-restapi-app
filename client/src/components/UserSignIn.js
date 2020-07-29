@@ -1,5 +1,6 @@
 import React from 'react';
 import Form from '../components/Form';
+import { Link } from 'react-router-dom';
 
 class UserSignIn extends React.Component {
   
@@ -49,6 +50,8 @@ class UserSignIn extends React.Component {
               )}
             />
           </div>
+          <p>&nbsp;</p>
+          <p>Don't have a user account? <Link to="/signup">Click here</Link> to sign up!</p>
         </div>
       </div>
     );
