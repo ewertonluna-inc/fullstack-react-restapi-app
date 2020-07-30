@@ -13,16 +13,50 @@ class UserSignUp extends React.Component {
   }
 
   submit = () => {
+    const { connection } = this.props;
     const { firstName, lastName, emailAddress, password, confirmPassword } = this.state;
     if (password !== confirmPassword) {
       this.setState( { errors: ["Password and its confirmation are not a match"]} );
     } else {
-      // TODO: Finish this method using the createUser() method
+      const user = {firstName, lastName, emailAddress, password};
+      connection.createUser(user)
+        .then(errors => {
+          if (errors.length > 0) {
+            this.setState({ errors });
+          } else {
+            // If user was created
+            this.props.signIn(emailAddress, password)
+              .then(user => {
+                if (user === null) {
+                  console.log(`User ${emailAddress} sign in failed.`);
+                } else {
+                  console.log(`SUCCESS! User ${emailAddress} signed in`);
+                  this.props.history.push('/courses');
+                }
+              })
+              .catch(err => {
+                console.log(err);
+                this.props.history.push('/courses');
+              });
+          }
+        })
+        .catch(err => {
+          console.log(err)
+          this.props.history.push('/errors');
+        });
     }
   }
 
   cancel = () => {
     this.props.history.push('/courses');
+  }
+
+  change = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    this.setState(() => (
+      {[name]: value}
+    ));
   }
 
   render() {
@@ -44,7 +78,8 @@ class UserSignUp extends React.Component {
                     name="firstName" 
                     type="text" className="" 
                     placeholder="First Name" 
-                    value="" 
+                    value={this.state.firstName}
+                    onChange={this.change} 
                   />
                 </div>
                 <div>
@@ -54,7 +89,8 @@ class UserSignUp extends React.Component {
                     type="text" 
                     className="" 
                     placeholder="Last Name" 
-                    value=""
+                    value={this.state.lastName}
+                    onChange={this.change}
                   />
                 </div>
                 <div>
@@ -62,9 +98,10 @@ class UserSignUp extends React.Component {
                     id="emailAddress" 
                     name="emailAddress" 
                     type="text" 
-                    lassName="" 
+                    className="" 
                     placeholder="Email Address" 
-                    value=""
+                    value={this.state.emailAddress}
+                    onChange={this.change}
                   />
                 </div>
                 <div>
@@ -74,7 +111,8 @@ class UserSignUp extends React.Component {
                     type="password" 
                     className="" 
                     placeholder="Password" 
-                    value=""
+                    value={this.state.password}
+                    onChange={this.change}
                   />
                 </div>
                 <div>
@@ -84,7 +122,8 @@ class UserSignUp extends React.Component {
                     type="password" 
                     className="" 
                     placeholder="Confirm Password" 
-                    value=""
+                    value={this.state.confirmPassword}
+                    onChange={this.change}
                   />
                 </div>
               </React.Fragment>

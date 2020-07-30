@@ -24,7 +24,7 @@ class App extends React.Component {
       <BrowserRouter>
         <Route path="/courses" component={Courses} />
         <Route path="/signin" render={() => <UserSignIn signIn={this.signIn} />} />
-        <Route path="/signup" render={() => <UserSignUp connection={this.connection}/>} />
+        <Route path="/signup" render={() => <UserSignUp signIn={this.signIn} connection={this.connection} />} />
       </BrowserRouter>
       </div>
     );
@@ -32,12 +32,14 @@ class App extends React.Component {
 
   signIn = async (emailAddress, password) => {
       const user = await this.connection.getUser(emailAddress, password);
-      this.setState({authenticatedUser: user});
+      if (user !== null) {
+        this.setState({authenticatedUser: user});
+      }
       return user;
   }
 
   signOut = () => {
-
+    this.setState({ authenticatedUser: null });
   }
 
 }

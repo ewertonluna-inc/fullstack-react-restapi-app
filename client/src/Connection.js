@@ -37,7 +37,7 @@ class Connection {
 
   createUser = async (user) => {
     const response = await this.api('/users', 'POST', user);
-    if (response.status === 200) {
+    if (response.status === 201) {
       return [];
     } else if (response.status === 400) {
       const { message } = await response.json();  // 'message' is an array containing error messages.
