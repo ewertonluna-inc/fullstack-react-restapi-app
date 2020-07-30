@@ -6,6 +6,7 @@ import './styles/global.css';
 
 import Courses from './components/Courses';
 import UserSignIn from './components/UserSignIn';
+import UserSignUp from './components/UserSignUp';
 
 class App extends React.Component {
   constructor() {
@@ -23,6 +24,7 @@ class App extends React.Component {
       <BrowserRouter>
         <Route path="/courses" component={Courses} />
         <Route path="/signin" render={() => <UserSignIn signIn={this.signIn} />} />
+        <Route path="/signup" render={() => <UserSignUp connection={this.connection}/>} />
       </BrowserRouter>
       </div>
     );
