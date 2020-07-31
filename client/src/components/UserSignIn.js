@@ -71,8 +71,8 @@ class UserSignIn extends React.Component {
         if (user === null) {
           this.setState({errors: ['Sign in was unsuccessful']});
         } else {
-          this.props.history.push('/courses');
           console.log(`SUCCESS! ${emailAddress} is now signed in!`);
+          this.props.history.push('/courses');
         }
       })
       .catch(err => {

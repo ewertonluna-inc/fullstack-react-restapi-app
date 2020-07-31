@@ -23,8 +23,8 @@ class App extends React.Component {
       <div>
       <BrowserRouter>
         <Route path="/courses" component={Courses} />
-        <Route path="/signin" render={() => <UserSignIn signIn={this.signIn} />} />
-        <Route path="/signup" render={() => <UserSignUp signIn={this.signIn} connection={this.connection} />} />
+        <Route path="/signin" render={(props) => <UserSignIn {...props} signIn={this.signIn} />} />
+        <Route path="/signup" render={(props) => <UserSignUp {...props} signIn={this.signIn} connection={this.connection} />} />
       </BrowserRouter>
       </div>
     );

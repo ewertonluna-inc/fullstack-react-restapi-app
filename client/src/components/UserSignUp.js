@@ -31,11 +31,12 @@ class UserSignUp extends React.Component {
                   console.log(`User ${emailAddress} sign in failed.`);
                 } else {
                   console.log(`SUCCESS! User ${emailAddress} signed in`);
+                  // Throws error here and control is passed to the catch() method
                   this.props.history.push('/courses');
                 }
               })
               .catch(err => {
-                console.log(err);
+                console.log("Error happened when sigining in",err);
                 this.props.history.push('/courses');
               });
           }
