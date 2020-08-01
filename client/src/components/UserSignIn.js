@@ -16,40 +16,38 @@ class UserSignIn extends React.Component {
       <div className="bounds">
         <div className="grid-33 centered signin">
           <h1>Sign In</h1>
-          <div>
-            <Form
-              submitButtonText="Sign In"
-              submit={this.submit}
-              cancel={this.cancel}
-              errors={this.state.errors}
-              elements={() => (
-                <React.Fragment>
-                  <div>
-                    <input
-                      id="emailAddress"
-                      name="emailAddress"
-                      type="text"
-                      onChange={this.change}
-                      className=""
-                      placeholder="Email Address"
-                      value={this.state.emailAddress}
-                    />
-                  </div>
-                  <div>
-                    <input
-                      id="password"
-                      name="password"
-                      type="password"
-                      onChange={this.change}
-                      className=""
-                      placeholder="Password"
-                      value={this.state.password}
-                    />
-                  </div>
-                </React.Fragment>
-              )}
-            />
-          </div>
+          <Form
+            submitButtonText="Sign In"
+            submit={this.submit}
+            cancel={this.cancel}
+            errors={this.state.errors}
+            elements={() => (
+              <React.Fragment>
+                <div>
+                  <input
+                    id="emailAddress"
+                    name="emailAddress"
+                    type="text"
+                    onChange={this.change}
+                    className=""
+                    placeholder="Email Address"
+                    value={this.state.emailAddress}
+                  />
+                </div>
+                <div>
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    onChange={this.change}
+                    className=""
+                    placeholder="Password"
+                    value={this.state.password}
+                  />
+                </div>
+              </React.Fragment>
+            )}
+          />
           <p>&nbsp;</p>
           <p>Don't have a user account? <Link to="/signup">Click here</Link> to sign up!</p>
         </div>

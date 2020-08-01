@@ -8,6 +8,7 @@ class CreateCourse extends React.Component {
     description: '',
     estimatedTime: '',
     materialsNeeded: '',
+    errors,
   };
 
   
@@ -25,7 +26,12 @@ class CreateCourse extends React.Component {
         <h1>Create Course</h1>
         <Form 
           submitButtonText="Create Course"
-
+          submit={this.submit}
+          cancel={this.cancel}
+          errors={this.state.errors}
+          element={() => (
+            
+          )}
         />
       </div>
     );

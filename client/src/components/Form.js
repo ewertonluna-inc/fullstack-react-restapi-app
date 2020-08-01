@@ -20,14 +20,16 @@ export default (props) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div>
       <ErrorsDisplay errors={errors} />
-      {elements()}
-      <div className="grid-100 pad-bottom">
-        <button className="button" type="submit">{submitButtonText}</button>
-        <button className="button button-secondary" onClick={handleCancel}>Cancel</button>
-      </div>
-    </form>
+      <form onSubmit={handleSubmit}>
+        {elements()}
+        <div className="grid-100 pad-bottom">
+          <button className="button" type="submit">{submitButtonText}</button>
+          <button className="button button-secondary" onClick={handleCancel}>Cancel</button>
+        </div>
+      </form>
+    </div>
   );
 }
 
