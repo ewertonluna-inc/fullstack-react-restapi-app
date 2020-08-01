@@ -36,13 +36,13 @@ class UserSignUp extends React.Component {
                 }
               })
               .catch(err => {
-                console.log("Error happened when sigining in",err);
+                console.warn("Error happened when signing in",err);
                 this.props.history.push('/courses');
               });
           }
         })
         .catch(err => {
-          console.log(err)
+          console.warn(err)
           this.props.history.push('/errors');
         });
     }
