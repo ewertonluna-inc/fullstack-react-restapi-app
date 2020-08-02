@@ -12,7 +12,8 @@ class CreateCourse extends React.Component {
   };
   
   submit = () => {
-    const { connection } = this.props;
+    const { connection, authenticatedUser } = this.props;
+    
   }
 
   cancel = () => {
