@@ -12,11 +12,11 @@ class CreateCourse extends React.Component {
   };
   
   submit = () => {
-
+    const { connection } = this.props;
   }
 
   cancel = () => {
-
+    this.props.history.push('/courses');
   }
 
   change = (event) => {

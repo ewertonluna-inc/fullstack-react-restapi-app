@@ -22,6 +22,10 @@ class Connection {
     return fetch(url, options);
   }
 
+  createCourse = (course, user) => {
+    // TODO: complete method
+  }
+
   getUser = async (emailAddress, password) => {
     const response = await this.api('/users', 'GET', null, true, {emailAddress, password});
     
