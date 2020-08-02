@@ -59,9 +59,8 @@ class CreateCourse extends React.Component {
                 </div>
                 <div className="course--description">
                   <div>
-                    <input 
-                      onChange={this.change} 
-                      type="textarea" 
+                    <textarea 
+                      onChange={this.change}
                       id="description" 
                       name="description" 
                       className="" 
@@ -81,9 +80,8 @@ class CreateCourse extends React.Component {
                     <li className="course--stats--list--item">
                       <h4>Materials Needed</h4>
                       <div>
-                        <input
+                        <textarea
                           onChange={this.change} 
-                          type="textarea" 
                           id="materialsNeeded" 
                           name="materialsNeeded" 
                           className="" 
