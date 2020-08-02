@@ -8,6 +8,7 @@ import Courses from './components/Courses';
 import UserSignIn from './components/UserSignIn';
 import UserSignUp from './components/UserSignUp';
 import CreateCourse from './components/CreateCourse';
+import Header from './components/Header'
 
 class App extends React.Component {
   constructor() {
@@ -22,12 +23,13 @@ class App extends React.Component {
   render() {
     return (
       <div>
-      <BrowserRouter>
-        <Route path="/courses" component={Courses} />
-        <Route path="/signin" render={(props) => <UserSignIn {...props} signIn={this.signIn} />} />
-        <Route path="/signup" render={(props) => <UserSignUp {...props} signIn={this.signIn} connection={this.connection} />} />
-        <Route path="/createcourse" render={(props) => <CreateCourse {...props} authenticatedUser={this.state.authenticatedUser} connection={this.connection} />} />
-      </BrowserRouter>
+        <BrowserRouter>
+          <Header authenticatedUser={this.state.authenticatedUser} />
+          <Route path="/courses" component={Courses} />
+          <Route path="/signin" render={(props) => <UserSignIn {...props} signIn={this.signIn} />} />
+          <Route path="/signup" render={(props) => <UserSignUp {...props} signIn={this.signIn} connection={this.connection} />} />
+          <Route path="/createcourse" render={(props) => <CreateCourse {...props} authenticatedUser={this.state.authenticatedUser} connection={this.connection} />} />
+        </BrowserRouter>
       </div>
     );
   }
