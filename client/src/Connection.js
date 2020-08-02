@@ -22,8 +22,21 @@ class Connection {
     return fetch(url, options);
   }
 
-  createCourse = (course, user) => {
+  createCourse = async (course, user) => {
     // TODO: complete method
+    const { id, emailAddress, password } = user;
+    course.userId = id;
+    const response = await this.api('/courses', 'POST', course, true, {emailAddress, password});
+    if (response.status === 201) {
+      return [];
+    } else if (response.status === 400) {
+      const { message } = await response.json();  // 'message' is an array containing error messages.
+      return message;
+    } else if (response.status === 401) {
+      return ["Access Denied"];
+    } else {
+      throw new Error();
+    }
   }
 
   getUser = async (emailAddress, password) => {

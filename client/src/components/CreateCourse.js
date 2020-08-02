@@ -13,7 +13,22 @@ class CreateCourse extends React.Component {
   
   submit = () => {
     const { connection, authenticatedUser } = this.props;
-    
+    const course = {
+      title: this.state.title,
+      description: this.state.description,
+      estimatedTime: this.state.estimatedTime,
+      materialsNeeded: this.state.materialsNeeded,
+    };
+    connection.createCourse(course, authenticatedUser)
+      .then(errors => {
+        if (errors.length > 0) {
+          this.setState({errors});
+        } else {
+          console.log('New course created');
+          this.props.history.push('/courses');
+        }
+      })
+      .catch(err => console.warn('Error creating course:', err));
   }
 
   cancel = () => {
