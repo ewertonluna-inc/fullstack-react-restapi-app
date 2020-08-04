@@ -23,7 +23,6 @@ class Connection {
   }
 
   createCourse = async (course, user) => {
-    // TODO: complete method
     const { id, emailAddress, password } = user;
     course.userId = id;
     const response = await this.api('/courses', 'POST', course, true, {emailAddress, password});
