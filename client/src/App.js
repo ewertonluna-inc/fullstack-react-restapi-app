@@ -1,5 +1,9 @@
 import React from 'react';
-import { BrowserRouter, Route} from 'react-router-dom';
+import { 
+  BrowserRouter, 
+  Route,
+  Redirect,
+} from 'react-router-dom';
 import Connection from './Connection';
 import './App.css';
 import './styles/global.css';
@@ -26,11 +30,12 @@ class App extends React.Component {
       <div>
         <BrowserRouter>
           <Header authenticatedUser={this.state.authenticatedUser} />
+          <Route exact path="/" render={() => <Redirect to="/courses" />} />
           <Route path="/courses" component={Courses} />
           <Route path="/signin" render={(props) => <UserSignIn {...props} signIn={this.signIn} />} />
           <Route path="/signout" render={ (props) => <UserSignOut authenticatedUser={this.state.authenticatedUser} signOut={this.signOut} /> } />
           <Route path="/signup" render={(props) => <UserSignUp {...props} signIn={this.signIn} connection={this.connection} />} />
-          <Route path="/createcourse" render={(props) => <CreateCourse {...props} authenticatedUser={this.state.authenticatedUser} connection={this.connection} />} />
+          {/* <Route path="/course/create" render={(props) => <CreateCourse {...props} authenticatedUser={this.state.authenticatedUser} connection={this.connection} />} />  */}
         </BrowserRouter>
       </div>
     );
