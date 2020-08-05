@@ -16,6 +16,7 @@ import UserSignUp from './components/UserSignUp';
 import CreateCourse from './components/CreateCourse';
 import Header from './components/Header'
 import UserSignOut from './components/UserSignOut';
+import UpdateCourse from './components/UpdateCourse';
 
 class App extends React.Component {
   constructor() {
@@ -36,8 +37,8 @@ class App extends React.Component {
             <Route exact path="/" render={() => <Redirect to="/courses" />} />
             <Route exact path="/courses" component={Courses} />
             <Route path="/courses/create" render={(props) => <CreateCourse {...props} authenticatedUser={this.state.authenticatedUser} connection={this.connection} />} /> 
-            <Route path="/courses/:id" render={(props) => <CourseDetail {...props} connection={this.connection} />} />
-            <Route path="/courses/:id/update" component={Courses} />
+            <Route exact path="/courses/:id" render={(props) => <CourseDetail {...props} connection={this.connection} />} />
+            <Route path="/courses/:id/update" render={(props) => <UpdateCourse {...props} connection={this.connection} /> } />
             <Route path="/signin" render={(props) => <UserSignIn {...props} signIn={this.signIn} />} />
             <Route path="/signout" render={ (props) => <UserSignOut {...props} authenticatedUser={this.state.authenticatedUser} signOut={this.signOut} /> } />
             <Route path="/signup" render={(props) => <UserSignUp {...props} signIn={this.signIn} connection={this.connection} />} />
