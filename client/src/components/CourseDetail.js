@@ -41,7 +41,7 @@ class CourseDetail extends React.Component {
                 <p>{`By ${courseUser.firstName} ${courseUser.lastName}`}</p>
               </div>
               <div className="course--description">
-                {description.split('\n\n').map(paragraph => <p>{paragraph}</p>)}
+                {description.split('\n\n').map((paragraph, index) => <p key={index}>{paragraph}</p>)}
               </div>;
             </div>
   
@@ -55,7 +55,7 @@ class CourseDetail extends React.Component {
                   <li className="course--stats--list--item">
                     <h4>Materials Needed</h4>
                     <ul>
-                      {materialsNeeded.split('\n').map(material => <p>{material}</p>)}
+                      {materialsNeeded.split('\n').map((material, index) => <p key={index}>{material}</p>)}
                     </ul>
                   </li>
                 </ul>
