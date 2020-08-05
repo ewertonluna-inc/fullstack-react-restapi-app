@@ -38,6 +38,19 @@ class Connection {
     }
   }
 
+  getCourse = async (id) => {
+    const response = await this.api(`/courses/${id}`, 'GET');
+    
+    if (response.status === 200) {
+      const course = await response.json();
+      return course;
+    } else if (response.status === 404) {
+      return null;
+    } else {
+      return new Error();
+    }
+  }
+
   getUser = async (emailAddress, password) => {
     const response = await this.api('/users', 'GET', null, true, {emailAddress, password});
     

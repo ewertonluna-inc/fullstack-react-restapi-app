@@ -35,7 +35,7 @@ class Courses extends React.Component {
                 <h3 className="course--title">{title}</h3>
               </Link>
             </div>
-          ) 
+          )
         })}
       </div>
     );
