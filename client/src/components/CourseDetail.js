@@ -42,7 +42,7 @@ class CourseDetail extends React.Component {
               </div>
               <div className="course--description">
                 {description.split('\n\n').map((paragraph, index) => <p key={index}>{paragraph}</p>)}
-              </div>;
+              </div>
             </div>
   
             <div className="grid-25 grid-right">
@@ -50,24 +50,28 @@ class CourseDetail extends React.Component {
                 <ul className="course--stats--list">
                   <li className="course--stats--list--item">
                     <h4>Estimated Time</h4>
-                    <h3>{estimatedTime}</h3>
+                    <h3>{estimatedTime ? estimatedTime : 'No information'}</h3>
                   </li>
                   <li className="course--stats--list--item">
                     <h4>Materials Needed</h4>
                     <ul>
-                      {materialsNeeded.split('\n').map((material, index) => <p key={index}>{material}</p>)}
+                      { materialsNeeded 
+                        ?
+                        materialsNeeded.split('\n').map((material, index) => material ? <li key={index}>{material}</li> : null)
+                        :
+                        <li>No information</li> }
                     </ul>
                   </li>
                 </ul>
               </div>
-            </div>;
+            </div>
           </div>
         </div>
       );
     } else {
       return (
         <React.Fragment>
-          <h2>No Courses Found</h2>
+          <h2>No Course Found</h2>
         </React.Fragment>
       );
     }

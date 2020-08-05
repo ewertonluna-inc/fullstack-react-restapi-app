@@ -39,7 +39,7 @@ class App extends React.Component {
             <Route path="/courses/:id" render={(props) => <CourseDetail {...props} connection={this.connection} />} />
             <Route path="/courses/:id/update" component={Courses} />
             <Route path="/signin" render={(props) => <UserSignIn {...props} signIn={this.signIn} />} />
-            <Route path="/signout" render={ (props) => <UserSignOut authenticatedUser={this.state.authenticatedUser} signOut={this.signOut} /> } />
+            <Route path="/signout" render={ (props) => <UserSignOut {...props} authenticatedUser={this.state.authenticatedUser} signOut={this.signOut} /> } />
             <Route path="/signup" render={(props) => <UserSignUp {...props} signIn={this.signIn} connection={this.connection} />} />
           </Switch>
         </BrowserRouter>
