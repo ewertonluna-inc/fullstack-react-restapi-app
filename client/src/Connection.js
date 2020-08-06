@@ -38,6 +38,18 @@ class Connection {
     }
   }
 
+  deleteCourse = async (id, emailAddress, password) => {
+    const response = await this.api(`/courses/${id}`, 'DELETE', null, true, emailAddress, password);
+    if (response.status === 204) {
+      return [];
+    } else if (response.status === 401 || response.status === 404) {
+      const { message } = await response.json();
+      return [ message ];
+    } else {
+      throw new Error();
+    }
+  }
+
   updateCourse = async (id, course, emailAddress, password) => {
     const response = await this.api(`/courses/${id}/`, 'PUT', course, true, {emailAddress, password});
     if (response.status === 200) {
