@@ -1,4 +1,7 @@
 import React from 'react';
+import './App.css';
+import './styles/global.css';
+
 import { 
   BrowserRouter, 
   Route,
@@ -6,9 +9,6 @@ import {
   Switch
 } from 'react-router-dom';
 import Connection from './Connection';
-import './App.css';
-import './styles/global.css';
-
 import Courses from './components/Courses';
 import CourseDetail from './components/CourseDetail';
 import UserSignIn from './components/UserSignIn';
@@ -38,9 +38,9 @@ class App extends React.Component {
             <Route exact path="/courses" component={Courses} />
             <Route path="/courses/create" render={(props) => <CreateCourse {...props} authenticatedUser={this.state.authenticatedUser} connection={this.connection} />} /> 
             <Route exact path="/courses/:id" render={(props) => <CourseDetail {...props} connection={this.connection} />} />
-            <Route path="/courses/:id/update" render={(props) => <UpdateCourse {...props} connection={this.connection} /> } />
+            <Route path="/courses/:id/update" render={(props) => <UpdateCourse {...props} authenticatedUser={this.state.authenticatedUser} connection={this.connection} /> } />
             <Route path="/signin" render={(props) => <UserSignIn {...props} signIn={this.signIn} />} />
-            <Route path="/signout" render={ (props) => <UserSignOut {...props} authenticatedUser={this.state.authenticatedUser} signOut={this.signOut} /> } />
+            <Route path="/signout" render={ (props) => <UserSignOut {...props} signOut={this.signOut} /> } />
             <Route path="/signup" render={(props) => <UserSignUp {...props} signIn={this.signIn} connection={this.connection} />} />
           </Switch>
         </BrowserRouter>

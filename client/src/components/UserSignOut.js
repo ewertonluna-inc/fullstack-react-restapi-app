@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 
 
-const UserSignOut = ({ authenticatedUser, signOut }) => {
+const UserSignOut = ({ signOut }) => {
   
   useEffect(() => {
-    console.log(`User ${authenticatedUser} signed out!`)
+    console.log(`User signed out!`)
     signOut();
   });
 

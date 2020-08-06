@@ -38,6 +38,23 @@ class Connection {
     }
   }
 
+  updateCourse = async (id, course, emailAddress, password) => {
+    const response = await this.api(`/courses/${id}/`, 'PUT', course, true, {emailAddress, password});
+    if (response.status === 200) {
+      return [];
+    } else if (response.status === 400) {
+      const data = await response.json();
+      const { message } = data; // 'message' is an array in this case
+      return message;  
+    } else if (response.status === 401 || response.status === 404) {  // 'message' is a string in these cases
+      const data = await response.json();
+      const { message } = data;
+      return [ message ];
+    } else {
+      throw new Error();
+    }
+  }
+
   getCourse = async (id) => {
     const response = await this.api(`/courses/${id}`, 'GET');
     
