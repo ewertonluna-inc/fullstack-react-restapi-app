@@ -27,6 +27,7 @@ class App extends React.Component {
 
   state = {
     authenticatedUser: null,
+    password: '',
   }
   
   render() {
@@ -37,9 +38,9 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/" render={() => <Redirect to="/courses" />} />
             <Route exact path="/courses" component={Courses} />
-            <PrivateRoute path="/courses/create" render={(props) => <CreateCourse {...props} authenticatedUser={this.state.authenticatedUser} connection={this.connection} />} /> 
+            <PrivateRoute path="/courses/create" authenticatedUser={this.state.authenticatedUser} connection={this.connection} component={CreateCourse} /> 
             <Route exact path="/courses/:id" render={(props) => <CourseDetail {...props} connection={this.connection} />} />
-            <PrivateRoute path="/courses/:id/update" render={(props) => <UpdateCourse {...props} authenticatedUser={this.state.authenticatedUser} connection={this.connection} /> } />
+            <PrivateRoute path="/courses/:id/update" authenticatedUser={this.state.authenticatedUser} connection={this.connection} component={UpdateCourse} />
             <Route path="/signin" render={(props) => <UserSignIn {...props} signIn={this.signIn} />} />
             <Route path="/signout" render={ (props) => <UserSignOut {...props} signOut={this.signOut} /> } />
             <Route path="/signup" render={(props) => <UserSignUp {...props} signIn={this.signIn} connection={this.connection} />} />
@@ -53,6 +54,7 @@ class App extends React.Component {
       const user = await this.connection.getUser(emailAddress, password);
       if (user !== null) {
         this.setState({authenticatedUser: user});
+        this.setState({password});
       }
       return user;
   }
