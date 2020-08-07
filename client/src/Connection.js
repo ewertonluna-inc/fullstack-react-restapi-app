@@ -52,7 +52,7 @@ class Connection {
 
   updateCourse = async (id, course, emailAddress, password) => {
     const response = await this.api(`/courses/${id}/`, 'PUT', course, true, {emailAddress, password});
-    if (response.status === 200) {
+    if (response.status === 204) {
       return [];
     } else if (response.status === 400) {
       const data = await response.json();

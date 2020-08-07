@@ -108,18 +108,17 @@ class UpdateCourse extends React.Component {
   }
 
   submit = () => {
-    const { connection } = this.props;
-    const { id } = this.props.match.params;
-    const user = this.props.authenticatedUser;
+    const { connection, password, match, authenticatedUser } = this.props;
+    const id = match.params.id;
     const { title, description, materialsNeeded, estimatedTime } = this.state;
     const course = { title, description, materialsNeeded, estimatedTime };
-    connection.updateCourse(id, course, user.emailAddress, user.password)
+    connection.updateCourse(id, course, authenticatedUser.emailAddress, password)
       .then(errors => {
         if (errors.length > 0) {
           this.setState({errors});
         } else {
           console.log('Course updated successfully!');
-          this.props.history.push(`/course/${id}`);
+          this.props.history.push(`/courses/${id}`);
         }
       })
       .catch(err => console.log('Error submitting course update', err));
