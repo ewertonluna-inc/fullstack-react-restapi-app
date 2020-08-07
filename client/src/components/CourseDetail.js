@@ -28,7 +28,7 @@ class CourseDetail extends React.Component {
       if (authenticatedUser && authenticatedUser.id === this.state.course.courseUser.id) {
         updateAndDeleteLinks = <React.Fragment><Link className="button" to={`/courses/${id}/update`}>Update Course</Link><Link className="button" to="#">Delete Course</Link></React.Fragment>;
       }
-      
+
       return (
         <div>
           <div className="actions--bar">
@@ -74,6 +74,7 @@ class CourseDetail extends React.Component {
           </div>
         </div>
       );
+      
     } else {
       return (
         <React.Fragment>
