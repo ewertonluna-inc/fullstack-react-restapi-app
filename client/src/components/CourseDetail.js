@@ -22,12 +22,16 @@ class CourseDetail extends React.Component {
   render() {
     if (this.state.course) {
       const {id, title, courseUser, description, estimatedTime, materialsNeeded} = this.state.course;
-      
+      const { authenticatedUser } = this.props;
+      let updateAndDeleteLinks = null;
+      if (authenticatedUser && authenticatedUser.id === this.state.course.courseUser.id) {
+        updateAndDeleteLinks = <React.Fragment><Link className="button" to={`/courses/${id}/update`}>Update Course</Link><Link className="button" to="#">Delete Course</Link></React.Fragment>;
+      }
       return (
         <div>
           <div className="actions--bar">
             <div className="bounds">
-              <div className="grid-100"><span><Link className="button" to={`/courses/${id}/update`}>Update Course</Link><Link className="button" to="#">Delete Course</Link></span>
+              <div className="grid-100"><span>{updateAndDeleteLinks}</span>
                 <Link className="button button-secondary" to='/courses'>Return to List</Link>
               </div>
             </div>
