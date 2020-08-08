@@ -8,6 +8,7 @@ import {
   Redirect,
   Switch
 } from 'react-router-dom';
+
 import Connection from './Connection';
 import Courses from './components/Courses';
 import CourseDetail from './components/CourseDetail';
@@ -18,6 +19,7 @@ import Header from './components/Header'
 import UserSignOut from './components/UserSignOut';
 import UpdateCourse from './components/UpdateCourse';
 import PrivateRoute from './components/PrivateRoute';
+import DeleteCourse from './components/DeleteCourse';
 
 class App extends React.Component {
   constructor() {
@@ -41,6 +43,7 @@ class App extends React.Component {
             <PrivateRoute path="/courses/create" authenticatedUser={this.state.authenticatedUser} connection={this.connection} component={CreateCourse} /> 
             <Route exact path="/courses/:id" render={(props) => <CourseDetail {...props} authenticatedUser={this.state.authenticatedUser} connection={this.connection} />} />
             <PrivateRoute path="/courses/:id/update" authenticatedUser={this.state.authenticatedUser} password={this.state.password} connection={this.connection} component={UpdateCourse} />
+            <PrivateRoute path="/courses/:id/delete" authenticatedUser={this.state.authenticatedUser} password={this.state.password} connection={this.connection} component={DeleteCourse} />
             <Route path="/signin" render={(props) => <UserSignIn {...props} signIn={this.signIn} />} />
             <Route path="/signout" render={ (props) => <UserSignOut {...props} signOut={this.signOut} /> } />
             <Route path="/signup" render={(props) => <UserSignUp {...props} signIn={this.signIn} connection={this.connection} />} />

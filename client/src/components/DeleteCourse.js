@@ -1,14 +1,20 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 
-const DeleteCourse = (props) => {
-  const { connection, authenticatedUser } = this.props;
-  const { emailAddress, password } = authenticatedUser;
-  const { id } = this.props.match.params;
+const DeleteCourse = ({ password, connection, authenticatedUser, match }) => {
+  const { emailAddress } = authenticatedUser;
+  const { id } = match.params;
 
-  connection.deleteCourse(id, emailAddress, password);
+  connection.deleteCourse(id, emailAddress, password)
+    .then(errors => {
+      const message = errors.length > 0 ? `Course could not be deleted: ${errors}` : 'Course deleted!'
+      console.log(message);
+    })
+    .catch(err => console.log('An error happened while trying to delete course:', err));
   
   return (
     <Redirect to="/courses" />
   );
 }
+
+export default DeleteCourse;

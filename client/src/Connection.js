@@ -39,7 +39,7 @@ class Connection {
   }
 
   deleteCourse = async (id, emailAddress, password) => {
-    const response = await this.api(`/courses/${id}`, 'DELETE', null, true, emailAddress, password);
+    const response = await this.api(`/courses/${id}`, 'DELETE', null, true, {emailAddress, password});
     if (response.status === 204) {
       return [];
     } else if (response.status === 401 || response.status === 404) {

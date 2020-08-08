@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
 
 class CourseDetail extends React.Component {
   
@@ -26,7 +27,7 @@ class CourseDetail extends React.Component {
       let updateAndDeleteLinks = null;
 
       if (authenticatedUser && authenticatedUser.id === this.state.course.courseUser.id) {
-        updateAndDeleteLinks = <React.Fragment><Link className="button" to={`/courses/${id}/update`}>Update Course</Link><Link className="button" to="#">Delete Course</Link></React.Fragment>;
+        updateAndDeleteLinks = <React.Fragment><Link className="button" to={`/courses/${id}/update`}>Update Course</Link><Link className="button" to={`/courses/${id}/delete`}>Delete Course</Link></React.Fragment>;
       }
 
       return (
@@ -47,7 +48,7 @@ class CourseDetail extends React.Component {
                 <p>{`By ${courseUser.firstName} ${courseUser.lastName}`}</p>
               </div>
               <div className="course--description">
-                {description.split('\n\n').map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+                <ReactMarkdown source={description} />
               </div>
             </div>
   
@@ -61,11 +62,7 @@ class CourseDetail extends React.Component {
                   <li className="course--stats--list--item">
                     <h4>Materials Needed</h4>
                     <ul>
-                      { materialsNeeded 
-                        ?
-                        materialsNeeded.split('\n').map((material, index) => material ? <li key={index}>{material}</li> : null)
-                        :
-                        <li>No information</li> }
+                      <ReactMarkdown source={materialsNeeded} />
                     </ul>
                   </li>
                 </ul>
