@@ -12,7 +12,7 @@ In addition, the project will require users to create an account and sign in to 
 To GET the client side working, make sure you first initiate the **back-end application**. In order to do this, you can follow the steps bellow. In the Terminal (macOs/Linux) or Command Prompt:
 1. Make sure you're in the `api` folder;
 2. Run `npm install` to install the required dependencies;
-3. Run `npm run seed` to automatically seed the `fsjstd-restapi.db` database with the default data;
+3. Run `npm run seed` to automatically instantiate and seed the `fsjstd-restapi.db` database with the default data;
 4. Run `npm start` to run the Node.js application at `http://localhost:5000/`.
 
 You can visit the [repository](https://github.com/ewertonluna-inc/rest-api) to read more about the REST API project.
