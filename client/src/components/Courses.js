@@ -8,6 +8,16 @@ class Courses extends React.Component {
   };
 
   componentDidMount() {
+    this.fetchCourses();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.courses.length !== prevState.courses.length) {
+      this.fetchCourses();
+    }
+  }
+
+  fetchCourses = () => {
     const options = { headers: { 'Accept': 'application/json'} }
 
     fetch(config.apiBaseURL + '/courses', options)
@@ -17,10 +27,9 @@ class Courses extends React.Component {
       .catch(err => console.log('Error when fetching resource:', err));
   }
 
-
-
   render(){
     const { courses } = this.state;
+    
 
     return (
       <div className="bounds">

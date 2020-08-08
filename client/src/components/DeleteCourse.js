@@ -13,7 +13,9 @@ const DeleteCourse = ({ password, connection, authenticatedUser, match }) => {
     .catch(err => console.log('An error happened while trying to delete course:', err));
   
   return (
-    <Redirect to="/courses" />
+    <React.Fragment>
+      <Redirect to="/courses" />
+    </React.Fragment>
   );
 }
 
