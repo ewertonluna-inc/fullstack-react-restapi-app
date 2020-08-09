@@ -12,6 +12,7 @@ class CreateCourse extends React.Component {
     errors: [],
   };
   
+  // Send request to create course.
   submit = () => {
     const { connection, authenticatedUser } = this.props;
     const course = {

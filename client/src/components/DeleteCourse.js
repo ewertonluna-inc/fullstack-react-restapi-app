@@ -1,10 +1,12 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 
+// This component will only render if user is authenticated and authorized. Then it will redirect to the courses main page.
 const DeleteCourse = ({ password, connection, authenticatedUser, match }) => {
   const { emailAddress } = authenticatedUser;
   const { id } = match.params;
 
+  // Send request to delete course.
   connection.deleteCourse(id, emailAddress, password)
     .then(errors => {
       const message = errors.length > 0 ? `Course could not be deleted: ${errors}` : 'Course deleted!'

@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import './styles/global.css';
 
+// Components imports
 import { 
   BrowserRouter, 
   Route,
@@ -21,12 +22,15 @@ import UpdateCourse from './components/UpdateCourse';
 import PrivateRoute from './components/PrivateRoute';
 import DeleteCourse from './components/DeleteCourse';
 
+
+// This component will store the application state and actions.
 class App extends React.Component {
   constructor() {
     super();
     this.connection = new Connection();
   }
 
+  // Global state.
   state = {
     authenticatedUser: null,
     password: '',
@@ -53,6 +57,8 @@ class App extends React.Component {
     );
   }
 
+  // Sign in user using the provided credentials and assigns it to the global state if the request is successful. 
+  // Returns user object or null, depending if the request is successful or not.
   signIn = async (emailAddress, password) => {
       const user = await this.connection.getUser(emailAddress, password);
       if (user !== null) {
@@ -62,8 +68,12 @@ class App extends React.Component {
       return user;
   }
 
+  // Signs out the user removing it from the global state.
   signOut = () => {
-    this.setState({ authenticatedUser: null });
+    this.setState({
+      authenticatedUser: null,
+      password: '',
+    });
   }
 
 }

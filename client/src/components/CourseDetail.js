@@ -20,6 +20,7 @@ class CourseDetail extends React.Component {
     
   }
 
+  // If there's a course, renders the course detail view. Otherwise, it will return a 'No courses found' message.
   render() {
     if (this.state.course) {
       const { id, title, courseUser, description, estimatedTime, materialsNeeded } = this.state.course;

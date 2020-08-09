@@ -1,5 +1,9 @@
 import React from 'react';
 
+/*
+  This component will serve as a template for other components that render a form.
+  It uses a prop named 'elements' to render desired elements inside a form.
+*/
 export default (props) => {
   const {
     errors,

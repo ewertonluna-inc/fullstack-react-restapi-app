@@ -1,6 +1,9 @@
 import config from './config';
 
+// The Connection class is a helper class that can be used to communicate and make requests to the REST API.
 class Connection {
+
+  /* Sends customizable requests to the back-end. It returns a promise containing the response */
   api = (path, method='GET', body=null, requiresAuth=false, credentials={}) => { // credentials will be an object like {emailAddress, password}
     const url = config.apiBaseURL + path;
 
@@ -22,6 +25,10 @@ class Connection {
     return fetch(url, options);
   }
 
+  /*
+    Sends POST request to the back-end to create new course. 
+    Returns a Promise that resolves with an array containing error messages, if there's any.
+  */ 
   createCourse = async (course, user) => {
     const { id, emailAddress, password } = user;
     course.userId = id;
@@ -38,6 +45,11 @@ class Connection {
     }
   }
 
+  /*
+    Sends DELETE request to the back-end to delete course related to the id. 
+    It Requires user credentials.
+    Returns a Promise that resolves with an array containing error messages, if there's any. 
+  */ 
   deleteCourse = async (id, emailAddress, password) => {
     const response = await this.api(`/courses/${id}`, 'DELETE', null, true, {emailAddress, password});
     if (response.status === 204) {
@@ -50,6 +62,11 @@ class Connection {
     }
   }
 
+  /*
+    Sends UPDATE request to the back-end to update course related to the id. 
+    It Requires user credentials.
+    Returns a Promise that resolves with an array containing error messages, if there's any.
+  */
   updateCourse = async (id, course, emailAddress, password) => {
     const response = await this.api(`/courses/${id}/`, 'PUT', course, true, {emailAddress, password});
     if (response.status === 204) {
@@ -67,6 +84,10 @@ class Connection {
     }
   }
 
+  /*
+    Sends GET request to the back-end to get course related to the id. 
+    Returns a Promise that resolves with the course if the course exists. Otherwise, returns null.
+  */
   getCourse = async (id) => {
     const response = await this.api(`/courses/${id}`, 'GET');
     
@@ -80,6 +101,10 @@ class Connection {
     }
   }
 
+  /*
+    Sends GET request to the back-end to get course related to the id. 
+    Returns a Promise that resolves with the authenticated user, if it has authorization. Otherwise, returns null.
+  */
   getUser = async (emailAddress, password) => {
     const response = await this.api('/users', 'GET', null, true, {emailAddress, password});
     
@@ -93,6 +118,10 @@ class Connection {
     }
   }
 
+  /*
+    Sends POST request to the back-end to create new user. 
+    Returns a Promise that resolves with an array containing error messages, if there's any.
+  */ 
   createUser = async (user) => {
     const response = await this.api('/users', 'POST', user);
     if (response.status === 201) {

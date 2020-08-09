@@ -11,7 +11,8 @@ class UserSignUp extends React.Component {
     confirmPassword: '',
     errors: [],
   }
-
+  
+  // Sends request to the back-end to create user and sign in.
   submit = () => {
     const { connection } = this.props;
     const { firstName, lastName, emailAddress, password, confirmPassword } = this.state;

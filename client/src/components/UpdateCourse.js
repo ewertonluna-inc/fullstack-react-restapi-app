@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from './Form';
 
+// This component will only render if user is authenticated and authorized.
 class UpdateCourse extends React.Component {
   state = {
     title: '',

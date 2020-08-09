@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 
-
+// This component will change the global authenticated user state to null and render the main courses page.
 const UserSignOut = ({ signOut }) => {
   
   useEffect(() => {

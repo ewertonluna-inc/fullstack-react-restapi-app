@@ -11,6 +11,7 @@ class Courses extends React.Component {
     this.fetchCourses();
   }
 
+  // Fetch for list of courses every time the Component is rendered.
   componentDidUpdate(prevProps, prevState) {
     if (this.state.courses.length !== prevState.courses.length) {
       this.fetchCourses();
